@@ -1,0 +1,11 @@
+#main {
+  padding: 10px;
+  height: 100px;
+  width: 150px;
+  font-family: Helvetica, Ubuntu, Arial, sans-serif;
+}
+
+#main > * {
+  display: block;
+  margin: 5px 0;
+}
