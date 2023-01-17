@@ -10,4 +10,4 @@ This extension will help you to update your IP address in the NAL with one click
 
 ## Demo 📺
 
-<video src="https://s3.ap-south-1.amazonaws.com/shared.aashutosh.dev/mongo_nal.mp4"></video>
+[![Mongo NAL Upsert Demo](https://s3.ap-south-1.amazonaws.com/shared.aashutosh.dev/mongo_nal.gif)](https://s3.ap-south-1.amazonaws.com/shared.aashutosh.dev/mongo_nal.gif)
