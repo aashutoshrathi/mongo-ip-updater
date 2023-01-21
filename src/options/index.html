@@ -1,12 +1,45 @@
 <!DOCTYPE html>
-<link rel="stylesheet" href="./index.css" />
+<html>
 
-<div id="main">
-  <label for="name">Your Entry Name</label>
-  <input name="name" type="text" />
-  <button id="save">Save</button>
+<head>
+  <meta charset='UTF-8' />
+  <link rel="stylesheet" href="./index.css" />
+</head>
 
-  <button id="upsert">Upsert NAL</button>
-</div>
+<body>
+  <div id="main">
+    <div class="hflex align-center">
+      <div class="icon-container">
+        <img class="icon" src="../../icons/icon.png" />
+      </div>
+      <div class="vflex text-center">
+        <p class="heading">MONGO IP UPDATER</p>
+        <!-- <i class="lazy">&nbsp;&nbsp;&nbsp;for the lazy</i> -->
+      </div>
+    </div>
+    <div>
+      <div class="hflex full-w">
+        <div class="full-w">
+          <label for="ip">Your IP Address</label>
+          <input name="ip" id="ip" type="text"></input>
+        </div>
+        <div id="refresh-ip" class="btn refresh">
+          🔄
+        </div>
+      </div>
+      <label for="name">Name for the entry in Mongo's access list
+      </label>
+      <input name="name" type="text"></input>
+      <div class="btn submit" id="upsert">
+        <p>Allow my IP</p>
+      </div>
+    </div>
+    <div class="tip">
+      💡 Allow your IP from any page on <b>MongoDB Cloud</b>
+    </div>
+    </div>
+    <div id="error"></div>
+    </body>
 
+</html>
 <script src="./index.js"></script>

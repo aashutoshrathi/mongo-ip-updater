@@ -1,9 +1,9 @@
 {
   "name": "Mongo NAL Updater",
   "author": "Aashutosh Rathi",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "manifest_version": 3,
-  "description": "Adds or update Mongo NAL Whitelist entry",
+  "description": "Adds or update Mongo Network access allowed list entry",
   "icons": {
     "16": "icons/icon16.png",
     "48": "icons/icon48.png",
@@ -16,16 +16,25 @@
     "default_popup": "src/options/index.html"
   },
   "permissions": [
+    "activeTab",
     "storage"
+  ],
+  "host_permissions": [
+    "https://*.mongodb.com/*"
   ],
   "content_scripts": [
     {
       "matches": [
-        "https://cloud.mongodb.com/*"
+        "https://*.mongodb.com/*"
       ],
       "js": [
         "src/content.js"
       ]
     }
-  ]
+  ],
+  "externally_connectable": {
+    "matches": [
+      "*://www.cloudflare.com/*"
+    ]
+  }
 }

@@ -1,11 +1,121 @@
-#main {
-  padding: 10px;
-  height: 100px;
-  width: 150px;
-  font-family: Helvetica, Ubuntu, Arial, sans-serif;
+@import url("https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap");
+
+html {
+  background-color: #1e1e1e;
+  padding: 0;
+  margin: 0;
+  color: white;
+  font-family: Manrope, Arial, Helvetica, sans-serif;
+}
+
+label {
+  color: #B2B1B1;
+  font-size: 16px;
+}
+
+input {
+  width: 100%;
+  display: block;
+  background-color: #e6e6e6;
+  height: 40px;
+  border-radius: 12px;
+  font-size: 18px;
+  margin-bottom: 16px;
+  margin-top: 8px;
+  padding-left: 8px;
+}
+
+body {
+  width: 326px;
+  height: 344px;
+  padding: 8px 16px;
+  padding-right: 30px;
 }
 
 #main > * {
-  display: block;
-  margin: 5px 0;
+  margin-bottom: 8px;
+}
+
+.hflex {
+  display: flex;
+  flex-direction: row;
+}
+
+.align-center {
+  align-items: center;
+}
+
+.vflex {
+  display: flex;
+  flex-direction: column;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.icon-container {
+  width: 46px;
+  height: 46px;
+  background-color: rgba(217, 217, 217, 1);
+  border-radius: 9999px;
+  margin-right: 8px;
+  padding: 8px;
+  text-align: center;
+}
+
+.icon {
+  width: 40px;
+  height: 40px;
+}
+
+.heading {
+  font-size: 24px;
+  font-weight: 600;
+}
+
+.lazy {
+  font-size: 12px;
+  align-self: flex-end;
+  margin-top: 0;
+}
+
+.full-w {
+  width: 100%;
+}
+
+.btn {
+  background-color: #223544;
+  height: 42px;
+  font-size: 21px;
+  border-radius: 18px;
+  font-weight: 600;
+  text-align: center;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+.btn:hover {
+  background-color: rgb(53, 83, 106);
+}
+
+.refresh {
+  align-self: flex-end;
+  margin-top: 8px;
+  width: 36px !important;
+}
+
+.submit {
+  margin-top: 12px;
+  width: 100%;
+}
+
+.tip {
+  color: #E5E8CB;
+  margin-top: 20px;
+  margin-bottom: 16px;
+  font-size: 12px;
 }
