@@ -7,6 +7,7 @@ const clickOnAddCurrentIP = async (ip) => {
     const addCurrentButton = document.querySelector(
       "button[name='addCurrentIpAddress']"
     );
+
     if (addCurrentButton) {
       addCurrentButton.click();
       await sleep(1000);
