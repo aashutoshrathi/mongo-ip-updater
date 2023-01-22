@@ -1,18 +1,27 @@
-const sleep = (milliseconds) => {
-  return new Promise((resolve) => setTimeout(resolve, milliseconds));
+const sleep = (ms) => {
+  return new Promise((resolve) => setTimeout(resolve, ms));
 };
 
-const clickOnAddCurrentIP = async () => {
-  const addCurrentButton = document.querySelector(
-    "button[name='addCurrentIpAddress']"
-  );
-  if (addCurrentButton) {
-    addCurrentButton.click();
-    await sleep(1000);
+const fillIP = async (ip) => {
+  if (!ip) {
+    const addCurrentButton = document.querySelector(
+      "button[name='addCurrentIpAddress']"
+    );
+
+    if (addCurrentButton) {
+      addCurrentButton.click();
+      await sleep(1000);
+    }
+    return;
+  }
+  const ipField = document.querySelector('[name="networkPermissionEntry"]');
+  
+  if (ipField) {
+    ipField.value = ip;
   }
 };
 
-const clickOnSaveButton = async () => {
+const clickSaveButton = async () => {
   const submitButton = document.querySelector(
     "button.button-is-primary[name='confirm']"
   );
@@ -20,7 +29,7 @@ const clickOnSaveButton = async () => {
   submitButton.click();
 };
 
-const addNewEntry = async (name) => {
+const addNewEntry = async (name, ip) => {
   const allSectionControls = document.querySelector(
     ".section-controls-is-end-justified"
   ).children;
@@ -31,22 +40,23 @@ const addNewEntry = async (name) => {
     }
   }
   await sleep(1000);
-  await clickOnAddCurrentIP();
+  await fillIP(ip);
 
   // Add Comment as entry name
   document.querySelector('[name="comment"]').value = name;
 
   // save
-  await clickOnSaveButton();
+  await clickSaveButton();
 };
 
-const updateIpAddress = async () => {
+const updateIpAddress = async (ip) => {
   await sleep(2000);
-  await clickOnAddCurrentIP();
-  await clickOnSaveButton();
+  await fillIP(ip);
+  await clickSaveButton();
 };
 
-const runIt = async (name) => {
+const runIt = async (values) => {
+  const { name, ip, isCurrentIp } = values;
   // Go to NAL Page
   if (window.location.hash !== "#/security/network/accessList") {
     window.location.hash = "#/security/network/accessList";
@@ -65,11 +75,11 @@ const runIt = async (name) => {
     }
   }
 
-  console.log("NAL Entry found?", found);
+  console.info("IP entry found =>", found);
   if (!found) {
-    await addNewEntry(name);
+    await addNewEntry(name, isCurrentIp ? undefined : ip);
   } else {
-    await updateIpAddress();
+    await updateIpAddress(isCurrentIp ? undefined : ip);
   }
 };
 
@@ -77,8 +87,9 @@ window.onload = () => {
   chrome.runtime.onMessage.addListener(
     async (request, sender, sendResponse) => {
       if (request.action === "upsert") {
-        await runIt(request.value);
+        await runIt(request.values);
       }
+      return;
     }
   );
 };

@@ -1,12 +1,39 @@
 <!DOCTYPE html>
-<link rel="stylesheet" href="./index.css" />
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="stylesheet" href="./index.css" />
+  </head>
 
-<div id="main">
-  <label for="name">Your Entry Name</label>
-  <input name="name" type="text" />
-  <button id="save">Save</button>
+  <body class="vflex">
+    <div class="header hflex align-center">
+      <div class="icon-container">
+        <img class="icon" src="../../icons/icon.png" />
+      </div>
+      <div class="vflex f-1 text-center">
+        <p class="heading">MONGO IP UPDATER</p>
+        <i class="lazy">&nbsp;&nbsp;&nbsp;for the supa hackas</i>
+      </div>
+    </div>
+    <div>
+      <div class="vflex">
+        <label for="ip">Your IP address</label>
+        <input name="ip" id="ip" type="text" />
+      </div>
 
-  <button id="upsert">Upsert NAL</button>
-</div>
+      <div class="vflex">
+        <label for="name">Name for entry</label>
+        <input name="name" type="text" />
+      </div>
 
+      <div class="btn submit" id="upsert">
+        <p>Add to access list</p>
+      </div>
+    </div>
+    <div class="tip">
+      💡 Tip: This can be done from any page on <b>MongoDB Cloud</b>
+    </div>
+    <div id="error"></div>
+  </body>
+</html>
 <script src="./index.js"></script>
