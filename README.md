@@ -1,4 +1,4 @@
-# Mongo NAL Upsert
+# Mongo IP Updater
 
 This is a simple extension to add or update your IP addresses into a [MongoDB Access List](https://www.mongodb.com/docs/atlas/security/ip-access-list/).
 
