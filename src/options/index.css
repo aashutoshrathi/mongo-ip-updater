@@ -73,12 +73,14 @@ body {
 .heading {
   font-size: 24px;
   font-weight: 600;
+  margin-bottom: 0;
 }
 
 .lazy {
   font-size: 12px;
   align-self: flex-end;
-  margin-top: 0;
+  margin-bottom: 20px;
+  margin-right: -16px !important;
 }
 
 .full-w {
