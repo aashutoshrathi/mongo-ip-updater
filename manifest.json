@@ -3,7 +3,7 @@
   "author": "Aashutosh Rathi",
   "version": "0.1.0",
   "manifest_version": 3,
-  "description": "Adds or update Mongo Network access allowed list entry",
+  "description": "Adds or updates Mongo Network access allowed list entry",
   "icons": {
     "16": "icons/icon16.png",
     "48": "icons/icon48.png",
