@@ -14,7 +14,6 @@ const updateIpField = async () => {
   document.querySelector("#ip").value = ip;
 };
 
-
 document.addEventListener("DOMContentLoaded", function () {
   // get current value from storage & fill it in input field
   chrome.storage.sync.get("name", function (data) {
@@ -26,15 +25,14 @@ document.addEventListener("DOMContentLoaded", function () {
   // Fill in the current IP
   updateIpField();
 
-
   document
     .querySelector('input[name="name"]')
-    .addEventListener("keyup", function () {
+    ?.addEventListener("keyup", function () {
       const name = document.querySelector('input[name="name"]').value;
       chrome.storage.sync.set({ name: name });
     });
 
-  document.querySelector("#upsert").addEventListener("click", async () => {
+  document.querySelector("#upsert")?.addEventListener("click", async () => {
     try {
       const [tab] = await chrome.tabs.query({
         active: true,
@@ -52,7 +50,7 @@ document.addEventListener("DOMContentLoaded", function () {
         values: {
           name,
           ip,
-          isCurrentIp: ip === await getCurrentIp(),
+          isCurrentIp: ip === (await getCurrentIp()),
         },
       });
       window.close();
@@ -61,7 +59,7 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   });
 
-  document.querySelector("#refresh-ip").addEventListener("click", async () => {
+  document.querySelector("#refresh-ip")?.addEventListener("click", async () => {
     updateIpField();
   });
 });

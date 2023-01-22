@@ -19,6 +19,7 @@ input {
   background-color: #e6e6e6;
   height: 40px;
   border-radius: 12px;
+  border: none;
   font-size: 18px;
   margin-bottom: 16px;
   margin-top: 8px;
@@ -109,7 +110,7 @@ body {
 }
 
 .submit {
-  margin-top: 12px;
+  margin-top: 20px;
   width: 100%;
 }
 

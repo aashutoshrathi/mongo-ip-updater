@@ -1,8 +1,8 @@
-const sleep = (milliseconds) => {
-  return new Promise((resolve) => setTimeout(resolve, milliseconds));
+const sleep = (ms) => {
+  return new Promise((resolve) => setTimeout(resolve, ms));
 };
 
-const clickOnAddCurrentIP = async (ip) => {
+const fillIP = async (ip) => {
   if (!ip) {
     const addCurrentButton = document.querySelector(
       "button[name='addCurrentIpAddress']"
@@ -19,10 +19,9 @@ const clickOnAddCurrentIP = async (ip) => {
   if (ipField) {
     ipField.value = ip;
   }
-
 };
 
-const clickOnSaveButton = async () => {
+const clickSaveButton = async () => {
   const submitButton = document.querySelector(
     "button.button-is-primary[name='confirm']"
   );
@@ -41,19 +40,19 @@ const addNewEntry = async (name, ip) => {
     }
   }
   await sleep(1000);
-  await clickOnAddCurrentIP(ip);
+  await fillIP(ip);
 
   // Add Comment as entry name
   document.querySelector('[name="comment"]').value = name;
 
   // save
-  await clickOnSaveButton();
+  await clickSaveButton();
 };
 
 const updateIpAddress = async (ip) => {
   await sleep(2000);
-  await clickOnAddCurrentIP(ip);
-  await clickOnSaveButton();
+  await fillIP(ip);
+  await clickSaveButton();
 };
 
 const runIt = async (values) => {
@@ -76,7 +75,7 @@ const runIt = async (values) => {
     }
   }
 
-  console.log("NAL Entry found?", found);
+  console.info("IP entry found =>", found);
   if (!found) {
     await addNewEntry(name, isCurrentIp ? undefined : ip);
   } else {
@@ -90,6 +89,7 @@ window.onload = () => {
       if (request.action === "upsert") {
         await runIt(request.values);
       }
+      return;
     }
   );
 };
