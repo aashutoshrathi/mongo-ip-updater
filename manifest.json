@@ -1,5 +1,5 @@
 {
-  "name": "Mongo NAL Updater",
+  "name": "Mongo IP Updater",
   "author": "Aashutosh Rathi",
   "version": "0.1.0",
   "manifest_version": 3,
@@ -12,7 +12,7 @@
   "default_locale": "en",
   "action": {
     "default_icon": "icons/icon19.png",
-    "default_title": "Upsert Mongo NAL",
+    "default_title": "Mongo IP Updater",
     "default_popup": "src/options/index.html"
   },
   "permissions": [
