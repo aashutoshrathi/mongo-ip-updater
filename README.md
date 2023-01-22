@@ -13,4 +13,4 @@ This extension will help you to update your IP address in the access list with j
 
 ## Demo 📺
 
-[![Mongo NAL Upsert Demo](https://s3.ap-south-1.amazonaws.com/shared.aashutosh.dev/mongo_nal.gif)](https://s3.ap-south-1.amazonaws.com/shared.aashutosh.dev/mongo_nal.gif?date=20220122)
+![Mongo NAL Upsert Demo](https://s3.ap-south-1.amazonaws.com/shared.aashutosh.dev/ip-updater-0.1.0.gif)
