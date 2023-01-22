@@ -2,44 +2,46 @@
 
 html {
   background-color: #1e1e1e;
-  padding: 0;
-  margin: 0;
   color: white;
   font-family: Manrope, Arial, Helvetica, sans-serif;
 }
 
+body {
+  width: 356px;
+  height: 372px;
+  padding-left: 16px;
+  padding-right: 16px;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  margin: 0;
+}
+
 label {
   color: #B2B1B1;
-  font-size: 16px;
+  font-size: 14px;
 }
 
 input {
-  width: 100%;
-  display: block;
   background-color: #e6e6e6;
   height: 40px;
+  display: block;
+  padding-left: 12px;
+  padding-right: 12px;
   border-radius: 12px;
   border: none;
   font-size: 18px;
   margin-bottom: 16px;
   margin-top: 8px;
-  padding-left: 8px;
-}
-
-body {
-  width: 326px;
-  height: 344px;
-  padding: 8px 16px;
-  padding-right: 30px;
-}
-
-#main > * {
-  margin-bottom: 8px;
 }
 
 .hflex {
   display: flex;
   flex-direction: row;
+}
+
+
+.f-1 {
+  flex: 1;
 }
 
 .align-center {
@@ -53,6 +55,10 @@ body {
 
 .text-center {
   text-align: center;
+}
+
+.header {
+  margin-bottom: 12px;
 }
 
 .icon-container {
@@ -80,7 +86,6 @@ body {
   font-size: 12px;
   align-self: flex-end;
   margin-bottom: 20px;
-  margin-right: -16px !important;
 }
 
 .full-w {
@@ -88,10 +93,10 @@ body {
 }
 
 .btn {
-  background-color: #223544;
+  background-color: #4856BA;
   height: 42px;
-  font-size: 21px;
-  border-radius: 18px;
+  font-size: 18px;
+  border-radius: 12px;
   font-weight: 500;
   text-align: center;
   cursor: pointer;
@@ -102,18 +107,13 @@ body {
 }
 
 .btn:hover {
-  background-color: rgb(53, 83, 106);
-}
-
-.refresh {
-  align-self: flex-end;
-  margin-top: 8px;
-  width: 36px !important;
+  background-color: #5464db;
 }
 
 .submit {
-  margin-top: 20px;
-  width: 100%;
+  margin-top: 10px;
+  letter-spacing: 1.2px;
+  font-size: 16px;
 }
 
 .tip {

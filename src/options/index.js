@@ -58,8 +58,4 @@ document.addEventListener("DOMContentLoaded", function () {
       document.querySelector("#error").innerText = e.message;
     }
   });
-
-  document.querySelector("#refresh-ip")?.addEventListener("click", async () => {
-    updateIpField();
-  });
 });
