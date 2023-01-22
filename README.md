@@ -4,7 +4,7 @@ This is a simple extension to upsert your IP addresses into a [MongoDB NAL](http
 
 ## Motivation 🤔
 
-Unstable internet connection is pain and when you have to access some database from local, but your IP changes very often, it becomes a pain to update the NAL to allow your IP.
+Unstable internet connection is already a pain and when you have to access some database from local, but your IP changes very often, it becomes a pain in the ass to update the NAL to allow your IP.
 
 This extension will help you to update your IP address in the NAL with one click.
 
