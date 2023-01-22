@@ -14,6 +14,7 @@ const clickOnAddCurrentIP = async (ip) => {
     return;
   }
   const ipField = document.querySelector('[name="networkPermissionEntry"]');
+  
   if (ipField) {
     ipField.value = ip;
   }
