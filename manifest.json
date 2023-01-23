@@ -34,7 +34,7 @@
   ],
   "externally_connectable": {
     "matches": [
-      "*://www.cloudflare.com/*"
+      "*://hutils.loxal.net/*"
     ]
   }
 }
