@@ -29,7 +29,7 @@ document.addEventListener("DOMContentLoaded", function () {
     .querySelector('input[name="name"]')
     ?.addEventListener("keyup", function () {
       const name = document.querySelector('input[name="name"]').value;
-      chrome.storage.sync.set({ name: name });
+      chrome.storage.sync.set({ name });
     });
 
   document.querySelector("#upsert")?.addEventListener("click", async () => {

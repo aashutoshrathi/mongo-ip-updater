@@ -1,7 +1,7 @@
 {
   "name": "Mongo IP Updater",
   "author": "Aashutosh Rathi",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "manifest_version": 3,
   "description": "Adds or updates Mongo Network access allowed list entry",
   "icons": {
@@ -22,6 +22,9 @@
   "host_permissions": [
     "https://*.mongodb.com/*"
   ],
+  "background": {
+    "service_worker": "src/background.js"
+  },
   "content_scripts": [
     {
       "matches": [
