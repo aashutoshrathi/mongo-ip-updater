@@ -22,6 +22,12 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   });
 
+  chrome.storage.sync.get("version", function (data) {
+    if (data.version) {
+      document.querySelector('#version').innerHTML = data.version;
+    }
+  });
+
   // Fill in the current IP
   updateIpField();
 
@@ -46,7 +52,7 @@ document.addEventListener("DOMContentLoaded", function () {
       const name = document.querySelector('input[name="name"]').value;
       const ip = document.querySelector("input[name='ip']").value;
       await chrome.tabs.sendMessage(tab.id, {
-        action: "upsert",
+        action: "UPSERT_IP_ENTRY",
         values: {
           name,
           ip,
