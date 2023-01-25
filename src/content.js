@@ -86,7 +86,7 @@ const runIt = async (values) => {
 window.onload = () => {
   chrome.runtime.onMessage.addListener(
     async (request, sender, sendResponse) => {
-      if (request.action === "upsert") {
+      if (request.action === "UPSERT_IP_ENTRY") {
         await runIt(request.values);
       }
       return;
