@@ -2,10 +2,16 @@ const sleep = (ms) => {
   return new Promise((resolve) => setTimeout(resolve, ms));
 };
 
+const NAL_URL = "#/security/network/accessList";
+
 const fillIP = async (ip) => {
   if (!ip) {
-    const addCurrentButton = document.querySelector(
-      "button[name='addCurrentIpAddress']"
+    const buttons = document.querySelectorAll(
+      '[data-testid="lg-modal"] button'
+    );
+
+    const addCurrentButton = Array.from(buttons).find(
+      (b) => b.innerText === "ADD CURRENT IP ADDRESS"
     );
 
     if (addCurrentButton) {
@@ -14,8 +20,11 @@ const fillIP = async (ip) => {
     }
     return;
   }
-  const ipField = document.querySelector('[name="networkPermissionEntry"]');
-  
+
+  const ipField = document.querySelector(
+    '[aria-labelledby="accessListEntryLabel"]'
+  );
+
   if (ipField) {
     ipField.value = ip;
   }
@@ -23,27 +32,29 @@ const fillIP = async (ip) => {
 
 const clickSaveButton = async () => {
   const submitButton = document.querySelector(
-    "button.button-is-primary[name='confirm']"
+    '[data-testid="lg-confirmation_modal-footer-confirm_button"]'
   );
   if (!submitButton) return;
   submitButton.click();
 };
 
 const addNewEntry = async (name, ip) => {
-  const allSectionControls = document.querySelector(
-    ".section-controls-is-end-justified"
-  ).children;
-  for (const e of allSectionControls) {
-    if (e.innerText === " ADD IP ADDRESS") {
-      e.click();
-      break;
-    }
+  const button = document.querySelector(`[href="${NAL_URL}/addToAccessList"]`);
+  if (button.innerText === "ADD IP ADDRESS") {
+    button.click();
   }
-  await sleep(1000);
+  await sleep(500);
   await fillIP(ip);
+  await sleep(500);
 
   // Add Comment as entry name
-  document.querySelector('[name="comment"]').value = name;
+  const commentBox = document.querySelector(
+    'input[aria-labelledby="commentLabel"]'
+  );
+  commentBox.focus();
+  // TODO: Fix this auto-clear issue
+  commentBox.value = name;
+  await sleep(500);
 
   // save
   await clickSaveButton();
@@ -58,8 +69,8 @@ const updateIpAddress = async (ip) => {
 const runIt = async (values) => {
   const { name, ip, isCurrentIp } = values;
   // Go to NAL Page
-  if (window.location.hash !== "#/security/network/accessList") {
-    window.location.hash = "#/security/network/accessList";
+  if (window.location.hash !== NAL_URL) {
+    window.location.hash = NAL_URL;
     await sleep(1000);
   }
 
