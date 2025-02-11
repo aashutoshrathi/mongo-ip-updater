@@ -52,8 +52,9 @@ const addNewEntry = async (name, ip) => {
     'input[aria-labelledby="commentLabel"]'
   );
   commentBox.focus();
-  // TODO: Fix this auto-clear issue
   commentBox.value = name;
+  commentBox.dispatchEvent(new Event("input", { bubbles: true }));
+  commentBox.dispatchEvent(new Event("change", { bubbles: true }));
   await sleep(500);
 
   // save
