@@ -1,7 +1,7 @@
 {
   "name": "Mongo IP Updater",
   "author": "Aashutosh Rathi",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "manifest_version": 3,
   "description": "Adds or updates Mongo Network access allowed list entry",
   "icons": {
@@ -15,29 +15,18 @@
     "default_title": "Mongo IP Updater",
     "default_popup": "src/options/index.html"
   },
-  "permissions": [
-    "activeTab",
-    "storage"
-  ],
-  "host_permissions": [
-    "https://*.mongodb.com/*"
-  ],
+  "permissions": ["activeTab", "storage"],
+  "host_permissions": ["https://*.mongodb.com/*"],
   "background": {
     "service_worker": "src/background.js"
   },
   "content_scripts": [
     {
-      "matches": [
-        "https://*.mongodb.com/*"
-      ],
-      "js": [
-        "src/content.js"
-      ]
+      "matches": ["https://*.mongodb.com/*"],
+      "js": ["src/content.js"]
     }
   ],
   "externally_connectable": {
-    "matches": [
-      "*://hutils.loxal.net/*"
-    ]
+    "matches": ["*://hutils.loxal.net/*"]
   }
 }
