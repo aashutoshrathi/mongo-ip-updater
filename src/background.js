@@ -1,10 +1,19 @@
-const MANIFEST = chrome.runtime.getManifest();
-const onInstalled = async () => {
-    const sites = MANIFEST.content_scripts.map((t) => t.matches).flat();
-    const tabs = await chrome.tabs.query({ url: sites });
-    chrome.storage.sync.set({ version: `v${MANIFEST.version}` });
-    await Promise.all(Array.from(tabs, (tab) => chrome.tabs.reload(tab.id)));
+const reloadMongoTabs = async () => {
+  const manifest = chrome.runtime.getManifest();
+  const matches = manifest.content_scripts.flatMap((script) => script.matches);
+  const tabs = await chrome.tabs.query({ url: matches });
+
+  await Promise.all(
+    tabs
+      .filter((tab) => Number.isInteger(tab.id))
+      .map((tab) => chrome.tabs.reload(tab.id).catch(() => undefined))
+  );
 };
 
-// reload pages on install
-chrome.runtime.onInstalled.addListener(onInstalled);
+// Existing Atlas tabs do not receive a newly installed content script until
+// they reload, so refresh only the URLs covered by this extension.
+chrome.runtime.onInstalled.addListener(() => {
+  reloadMongoTabs().catch((error) => {
+    console.error("Mongo IP Updater could not reload Atlas tabs:", error);
+  });
+});

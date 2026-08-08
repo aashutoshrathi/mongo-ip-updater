@@ -28,10 +28,20 @@ This extension will help you to update your IP address in the access list with j
 
   **OR**
 
-  Download the latest version here: [Mongo IP Updater ✨](https://github.com/aashutoshrathi/mongo-ip-updater/archive/master.zip)
+  Download the latest version here: [Mongo IP Updater ✨](https://github.com/aashutoshrathi/mongo-ip-updater/releases/latest)
 
 - Go to `chrome://extensions/` & enable Developer Mode.
 - Click on Load Unpacked Extension and Open/Select the folder.
+
+### Releasing
+
+Push a version tag matching `manifest.json` (for example, `v0.1.4`). The release
+workflow creates a GitHub release, then the publish workflow packages the
+extension, publishes it to the Chrome Web Store, and attaches the ZIP to the
+release. A failed publish can be retried manually with its existing tag.
+
+The `chrome-web-store` GitHub environment must define `CWS_CLIENT_ID`,
+`CWS_CLIENT_SECRET`, `CWS_REFRESH_TOKEN`, and `CRX_PRIVATE_KEY`.
 
 ## Demo 📺
 
