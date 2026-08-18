@@ -18,6 +18,7 @@
   "permissions": ["activeTab", "storage"],
   "host_permissions": [
     "https://*.mongodb.com/*",
+    "https://api.ipify.org/*",
     "https://hutils.loxal.net/*"
   ],
   "background": {

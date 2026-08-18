@@ -1,12 +1,22 @@
-const currentIpUrl = "https://hutils.loxal.net/whois";
+const currentIpUrls = [
+  "https://api.ipify.org?format=json",
+  "https://hutils.loxal.net/whois",
+];
 
 const getCurrentIp = async () => {
-  const response = await fetch(currentIpUrl);
-  if (!response.ok) throw new Error("Could not determine your current IP address.");
+  for (const url of currentIpUrls) {
+    try {
+      const response = await fetch(url);
+      if (!response.ok) continue;
 
-  const data = await response.json();
-  if (!data.ip) throw new Error("The IP service returned an invalid response.");
-  return data.ip;
+      const data = await response.json();
+      if (!data.ip) continue;
+      return data.ip;
+    } catch {
+      continue;
+    }
+  }
+  throw new Error("Could not determine your current IP address.");
 };
 
 const setStatus = (message, isError = false) => {
@@ -72,7 +82,9 @@ document.addEventListener("DOMContentLoaded", async () => {
       });
 
       if (!response?.ok) {
-        throw new Error(response?.error || "Atlas did not complete the update.");
+        throw new Error(
+          response?.error || "Atlas did not complete the update.",
+        );
       }
       setStatus(`Access-list entry ${response.operation}.`);
     } catch (error) {
