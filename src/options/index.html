@@ -8,7 +8,7 @@
   <body class="vflex">
     <div class="header hflex align-center">
       <div class="icon-container">
-        <img class="icon" src="../../icons/icon.png" />
+        <img class="icon" src="../../icons/icon.png" alt="" />
       </div>
       <div class="vflex f-1 ml-6">
         <p class="heading">MONGO IP UPDATER</p>
@@ -29,14 +29,14 @@
         <input name="name" type="text" />
       </div>
 
-      <div class="btn submit" id="upsert">
-        <p>Add to access list</p>
-      </div>
+      <button class="btn submit" id="upsert" type="button">
+        Add or update access list
+      </button>
     </div>
     <div class="tip">
       💡 Tip: This can be done from any page on <b>MongoDB Cloud</b>
     </div>
-    <div id="error"></div>
+    <div id="status" role="status" aria-live="polite"></div>
+    <script src="./index.js"></script>
   </body>
 </html>
-<script src="./index.js"></script>

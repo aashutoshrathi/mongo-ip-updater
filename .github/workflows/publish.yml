@@ -1,0 +1,77 @@
+name: Publish
+
+on:
+  release:
+    types: [published]
+  workflow_run:
+    workflows: [Release]
+    types: [completed]
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: Release tag to retry a failed publish for
+        required: true
+
+concurrency:
+  group: publish-${{ github.event.release.tag_name || inputs.tag || github.event.workflow_run.head_sha }}
+
+jobs:
+  publish:
+    if: ${{ github.event_name != 'workflow_run' || github.event.workflow_run.conclusion == 'success' }}
+    runs-on: ubuntu-latest
+    environment: chrome-web-store
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.workflow_run.head_sha || github.event.release.tag_name || inputs.tag }}
+          fetch-depth: 0
+          persist-credentials: false
+
+      - name: Resolve release tag
+        env:
+          EVENT_NAME: ${{ github.event_name }}
+          RELEASE_TAG: ${{ github.event.release.tag_name || inputs.tag }}
+        run: |
+          if [ "$EVENT_NAME" = "workflow_run" ]; then
+            TAG=$(git tag --points-at HEAD | grep '^v' | head -n 1)
+          else
+            TAG=$RELEASE_TAG
+          fi
+          if [ -z "$TAG" ]; then
+            echo "::error::No version tag points at the release commit"
+            exit 1
+          fi
+          echo "TAG=$TAG" >> "$GITHUB_ENV"
+
+      - name: Check manifest version matches the tag
+        run: |
+          manifest=$(jq -r .version manifest.json)
+          tag=${TAG#v}
+          if [ "$manifest" != "$tag" ]; then
+            echo "::error::manifest.json is $manifest but the tag is $tag"
+            exit 1
+          fi
+
+      - name: Build package
+        run: |
+          zip -r mongo-ip-updater.zip \
+            manifest.json src icons _locales \
+            -x '*.DS_Store'
+
+      - name: Upload and publish to the Chrome Web Store
+        uses: puzzlers-labs/chrome-webstore-publish@010fc578dea8e3a05e15af75b836be821ee9ab74 # v1
+        with:
+          mode: publish
+          extension_id: cklilnpehpogpeoeklbefjbjafcnlofj
+          zip_file_path: mongo-ip-updater.zip
+          client_id: ${{ secrets.CWS_CLIENT_ID }}
+          client_secret: ${{ secrets.CWS_CLIENT_SECRET }}
+          refresh_token: ${{ secrets.CWS_REFRESH_TOKEN }}
+          crx_private_key: ${{ secrets.CRX_PRIVATE_KEY }}
+
+      - name: Attach ZIP to the release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh release upload "$TAG" mongo-ip-updater.zip --clobber

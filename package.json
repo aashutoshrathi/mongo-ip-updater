@@ -1,0 +1,9 @@
+{
+  "name": "mongo-ip-updater",
+  "version": "0.1.4",
+  "private": true,
+  "scripts": {
+    "test": "node --test",
+    "check": "node --check src/background.js && node --check src/content.js && node --check src/options/index.js && node --test"
+  }
+}
